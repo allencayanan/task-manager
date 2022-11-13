@@ -1,5 +1,5 @@
 <template>
     <h1>
-        Laravel 9 vite with vue 3
+        eloasdasd
     </h1>
 </template>
