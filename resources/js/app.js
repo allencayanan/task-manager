@@ -1,18 +1,18 @@
 import './bootstrap'
 import { createApp } from 'vue'
-// import { ToastPlugin, ModalPlugin } from 'bootstrap-vue'
 
-// import router from './router'
-// import store from './store'
 import App from './App.vue'
+import router from './router'
+import VueAxios from 'vue-axios';
+import axios from 'axios';
+import store from './store'
 
 
-// 3rd party plugins
-// import '@axios'
-// import '@/libs/toastification'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap'
 
-
-// BSV Plugin Registration
-// Vue.use(ToastPlugin)
-
-createApp(App).mount("#app")
+createApp(App)
+  .use(store)
+  .use(router)
+  .use(VueAxios, axios)
+  .mount('#app')

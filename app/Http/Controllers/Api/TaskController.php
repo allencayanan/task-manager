@@ -28,6 +28,15 @@ class TaskController extends Controller
      */
     public function index(Request $request)
     {
+        if ($request->has('query')) {
+            $query = $request->input('query');
+
+            $this->task = $this->task
+                ->whereLike('title', $query)
+                ->orWhereLike('content', $query)
+                ->orWhereLike('status', $query);
+        }
+
         return new TaskCollection($this->task->get());
     }
 
