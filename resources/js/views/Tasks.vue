@@ -8,25 +8,29 @@
         </div>
       </div>
       <div class="col-md-6 col-sm-12">
-        <button type="button" class="btn btn-primary">+ Add Task</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#create-task-modal">+ Add Task</button>
       </div>
     </div>
 
 		<div class="row g-4 py-3">
-      <TaskCard
+      <task-card
 				v-for="task in tasks"
+        :key="task.id"
         :id="task.id"
         :title="task.title"
         :content="task.content"
         :status="task.status"
         :tags="task.tags"
-      />
+      ></task-card>
 		</div>
+
+    <create-task-modal ref="createTaskModal"></create-task-modal>
 	</div>
 </template>
 
 <script>
 import TaskCard from '../components/tasks/TaskCard.vue'
+import CreateTaskModal from '../components/tasks/CreateTaskModal.vue'
 
 export default {
 	name: 'Tasks',
@@ -36,6 +40,7 @@ export default {
   }),
 	components: {
 		TaskCard,
+    CreateTaskModal,
 	},
 	created() {
 		this.fetchTasks()
@@ -52,6 +57,9 @@ export default {
     },
     search() {
       this.fetchTasks()
+    },
+    openCreateTaskModal() {
+      this.$refs.createTaskModal
     }
   }
 }

@@ -6,10 +6,12 @@
         {{ title }}
       </div>
       <div class="card-body">
+        <h6 class="card-subtitle mb-2 text-muted">{{ status }}</h6>
         <p class="card-text">{{ content }}</p>
         <span
           class="badge rounded-pill bg-secondary"
           v-for="tag in tags"
+          :key="tag.id"
           >{{ tag.name }}
         </span>
       </div>
