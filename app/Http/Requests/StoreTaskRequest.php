@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Task;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreTaskRequest extends FormRequest
 {
@@ -16,6 +18,9 @@ class StoreTaskRequest extends FormRequest
         return [
             'title' => ['required', 'string', 'max:255'],
             'content' => ['nullable', 'string', 'max:500'],
+            'status' => ['required', 'string', Rule::in(Task::getStatuses())],
+            'tags' => ['nullable', 'array'],
+            'tags.*' => ['exists:tags,id'],
         ];
     }
 }

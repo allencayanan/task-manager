@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Task;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,6 +20,7 @@ class TaskFactory extends Factory
         return [
             'title' => $this->faker->words(5, true),
             'content' => $this->faker->sentences(5, true),
+            'status' => $this->faker->randomElement(Task::getStatuses()),
         ];
     }
 }
