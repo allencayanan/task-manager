@@ -82,7 +82,10 @@ class TaskController extends Controller
      */
     public function destroy($taskId)
     {
-        $this->task->findOrFail($taskId)->delete();
+        $task = $this->task->findOrFail($taskId);
+
+        $task->tags()->detach();
+        $task->delete();
 
         return response()->noContent();
     }
