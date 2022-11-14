@@ -20,7 +20,7 @@ class StoreTaskRequest extends FormRequest
             'content' => ['nullable', 'string', 'max:500'],
             'status' => ['required', 'string', Rule::in(Task::getStatuses())],
             'tags' => ['nullable', 'array'],
-            'tags.*' => ['exists:tags,id'],
+            'tags.*.id' => ['exists:tags,id'],
         ];
     }
 }
