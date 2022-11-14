@@ -35,7 +35,7 @@ export default {
     deleteTask () {
       this.$http.delete('/api/tasks/'+ this.$route.params.id).then(response => {
         alert('Successfully deleted task!')
-        this.$router.push({name: 'tasks'})
+        this.$router.go(this.$router.currentRoute)
       })
     }
   }
