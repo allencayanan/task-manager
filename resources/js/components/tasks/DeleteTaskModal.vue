@@ -72,11 +72,10 @@ export default {
       })
     },
     saveTask () {
-      this.$http.post('/api/tasks', this.task)
-        .then(response => {
-          alert('Successfully saved task!')
-          this.$emit('fetchTasks')
-        })
+      var data = this.task
+      this.$http.post('/api/tasks', data).then(response => {
+        this.tags = response.data.data
+      })
     }
   }
 };

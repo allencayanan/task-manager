@@ -24,13 +24,13 @@
       ></task-card>
 		</div>
 
-    <create-task-modal ref="createTaskModal"></create-task-modal>
+    <create-task-modal ref="createTaskModal" @fetch-tasks="fetchTasks"></create-task-modal>
 	</div>
 </template>
 
 <script>
-import TaskCard from '../components/tasks/TaskCard.vue'
-import CreateTaskModal from '../components/tasks/CreateTaskModal.vue'
+import TaskCard from '../../components/tasks/TaskCard.vue'
+import CreateTaskModal from '../../components/tasks/CreateTaskModal.vue'
 
 export default {
 	name: 'Tasks',
@@ -47,7 +47,7 @@ export default {
 	},
   methods: {
     async fetchTasks() {
-      axios.get('/api/tasks', {
+      this.$http.get('/api/tasks', {
         params: {
           query: this.query
         }
@@ -57,9 +57,6 @@ export default {
     },
     search() {
       this.fetchTasks()
-    },
-    openCreateTaskModal() {
-      this.$refs.createTaskModal
     }
   }
 }

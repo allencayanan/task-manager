@@ -9,16 +9,14 @@
         <h6 class="card-subtitle mb-2 text-muted">{{ status }}</h6>
         <p class="card-text">{{ content }}</p>
         <span
-          class="badge rounded-pill bg-secondary"
+          class="badge rounded-pill bg-secondary me-2"
           v-for="tag in tags"
           :key="tag.id"
           >{{ tag.name }}
         </span>
       </div>
       <div class="card-footer">
-
-        <a href="#" class="btn btn-primary me-2">Update</a>
-        <a href="#" class="btn btn-danger">Delete</a>
+        <router-link :to="'/tasks/' + id + '/edit/'" class="btn btn-info text-white">Edit</router-link>
       </div>
     </div>
   </div>
@@ -26,13 +24,11 @@
 
 <script>
 import CreateTaskModalVue from './CreateTaskModal.vue'
-import UpdateTaskModalVue from './UpdateTaskModal.vue'
 
 export default {
   name: 'task',
   components: [
     CreateTaskModalVue,
-    UpdateTaskModalVue,
   ],
   props: [
     'id',
