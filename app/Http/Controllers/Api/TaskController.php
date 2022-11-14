@@ -10,6 +10,7 @@ use App\Http\Resources\TaskResource;
 use App\Models\Task;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class TaskController extends Controller
 {
@@ -48,9 +49,11 @@ class TaskController extends Controller
      */
     public function store(StoreTaskRequest $request)
     {
+        $tagIds = Arr::pluck($request->validated('tags'), 'id');
+
         $this->task->fill($request->validated())->save();
 
-        $this->task->tags()->attach($request->validated('tags'));
+        $this->task->tags()->attach($tagIds);
 
         return response()->noContent();
     }
@@ -75,10 +78,12 @@ class TaskController extends Controller
      */
     public function update(UpdateTaskRequest $request, $taskId)
     {
+        $tagIds = Arr::pluck($request->validated('tags'), 'id');
+
         $task = $this->task->findOrFail($taskId);
 
         $task->update($request->validated());
-        $task->tags()->sync($request->validated('tags'));
+        $task->tags()->sync($tagIds);
 
         return response()->noContent();
     }

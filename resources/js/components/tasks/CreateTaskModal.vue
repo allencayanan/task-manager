@@ -32,7 +32,7 @@
                   <option
                     v-for="tag in tags"
                     :key="tag.id"
-                    :value="tag.id"
+                    :value="tag"
                     >{{ tag.name }}
                   </option>
                 </select>
@@ -71,7 +71,7 @@ export default {
         this.tags = response.data.data
       })
     },
-    saveTask () {
+    saveTask() {
       this.$http.post('/api/tasks', this.task)
         .then(response => {
           alert('Successfully saved task!')

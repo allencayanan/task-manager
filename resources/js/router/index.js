@@ -5,12 +5,12 @@ import TaskEdit from '../views/tasks/TaskEdit.vue'
 const routes = [
 	{
 		path: '/',
-		name: 'Tasks',
+		name: 'tasks',
 		component: Tasks
 	},
 	{
-		path: '/tasks/(:id)',
-		name: 'Task',
+		path: '/tasks/:id/edit',
+		name: 'task-edit',
 		component: TaskEdit
 	},
 ]

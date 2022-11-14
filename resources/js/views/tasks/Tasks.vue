@@ -24,7 +24,7 @@
       ></task-card>
 		</div>
 
-    <create-task-modal ref="createTaskModal" @fetch-tasks="fetchTasks"></create-task-modal>
+    <create-task-modal @fetch-tasks="fetchTasks"></create-task-modal>
 	</div>
 </template>
 
