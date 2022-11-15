@@ -38,6 +38,8 @@ class TaskController extends Controller
                 ->orWhereLike('status', $query);
         }
 
+        $this->task = $this->task->with('tags');
+
         return new TaskCollection($this->task->get());
     }
 
